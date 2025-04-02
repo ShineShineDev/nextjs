@@ -4,7 +4,7 @@
 
   
 
-  ```
+  ```react
   // src/app/api/user/route.js
   
   export async function GET(req) {

@@ -22,7 +22,7 @@
 
 - Drizzle has native support for PostgreSQL connections with the `node-postgres` and `postgres.js` drivers.
 
-  ```cmd
+  ```bash
   npm i drizzle-orm pg dotenv
   npm i -D drizzle-kit @types/pg
   ```
@@ -31,9 +31,9 @@
 
 ##### Setting Up
 
--  .env 
+- .env 
 
-  ```
+  ```js
   //my-project/.env
   
   DATABASE_URL=postgresql://username:password@127.0.0.1/dbName
@@ -45,34 +45,41 @@
 
 - DB index file
 
-  ```
+  ```react
   //my-project/src/db/index.ts
-  import 'dotenv/config';
-  import { drizzle } from 'drizzle-orm/node-postgres';
+  import 'dotenv/config'; 
+  import { drizzle } from 'drizzle-orm/node-postgres'; 
+  import * as schema from './schema';  
   
+  // Initialize the database with your DATABASE_URL
   const db = drizzle(process.env.DATABASE_URL!);
+  drizzle(db,{schema,logger:true})
+  // Pass the schema to the db for defining the tables
+  export const sql = db;  // Export the initialized db instance directly
+  // export const sql = drizzle(db,{schema,logger:true})
   
   ```
 
 - schema file
 
-  ```
+  ```react
   //my-project/src/db/schema.ts
   
   import { integer, pgTable, varchar } from "drizzle-orm/pg-core";
   
-  export const usersTable = pgTable("testing", {
+  // Define the 'users' table schema
+  export const usersTable = pgTable("users", {
     id: integer().primaryKey().generatedAlwaysAsIdentity(),
     name: varchar({ length: 255 }).notNull(),
     age: integer().notNull(),
+    status: integer().notNull(),
     email: varchar({ length: 255 }).notNull().unique(),
   });
-  
   ```
 
 - drizzle.config.ts
 
-  ```
+  ```react
   //my-project/drizzle.config.ts
   
   import 'dotenv/config';
@@ -86,11 +93,23 @@
       url: process.env.DATABASE_URL!,
     },
   });
+  
   ```
-
+  
   
 
 
 
 
+
+###### migrate
+
+````
+npx drizzle-kit generate
+
+npx  drizzle-kit migrate
+
+npx  drizzle-kit push
+npx drizzle-kit pull
+````
 
