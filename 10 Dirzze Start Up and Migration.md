@@ -106,10 +106,10 @@
 
 ````
 npx drizzle-kit generate
+npx drizzle-kit pull
+npx  drizzle-kit push
 
 npx  drizzle-kit migrate
 
-npx  drizzle-kit push
-npx drizzle-kit pull
 ````
 
