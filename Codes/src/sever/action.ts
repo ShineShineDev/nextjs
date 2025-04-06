@@ -1,6 +1,6 @@
 'use server'
 import { sql } from "@/db/index";  // Import the initialized db instance
-import { usersTable } from "@/db/schema";  // Import the usersTable directly
+import { users } from "@/db/schema";  // Import the usersTable directly
 import { eq } from 'drizzle-orm';  // Import the eq function from drizzle-orm
 import { revalidatePath } from "next/cache";
 
@@ -14,7 +14,7 @@ export async function crateData(formData: FormData) {
     const email = formData.get("email");
     const age = formData.get("age");
     const result = await sql
-        .insert(usersTable)
+        .insert(users)
         .values({
             name,
             email,

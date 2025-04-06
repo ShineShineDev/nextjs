@@ -1,43 +1,7 @@
-import { pgTable, foreignKey, text, integer, timestamp, unique, boolean } from "drizzle-orm/pg-core"
+import { pgTable, foreignKey, unique, text, integer, boolean, timestamp } from "drizzle-orm/pg-core"
 import { sql } from "drizzle-orm"
 
 
-
-export const account = pgTable("account", {
-	userId: text().notNull(),
-	type: text().notNull(),
-	provider: text().notNull(),
-	providerAccountId: text().notNull(),
-	refreshToken: text("refresh_token"),
-	accessToken: text("access_token"),
-	expiresAt: integer("expires_at"),
-	tokenType: text("token_type"),
-	scope: text(),
-	idToken: text("id_token"),
-	sessionState: text("session_state"),
-}, (table) => [
-	foreignKey({
-			columns: [table.userId],
-			foreignColumns: [user.id],
-			name: "account_userId_user_id_fk"
-		}).onDelete("cascade"),
-]);
-
-export const verificationToken = pgTable("verificationToken", {
-	identifier: text().notNull(),
-	token: text().notNull(),
-	expires: timestamp({ mode: 'string' }).notNull(),
-});
-
-export const user = pgTable("user", {
-	id: text().primaryKey().notNull(),
-	name: text(),
-	email: text(),
-	emailVerified: timestamp({ mode: 'string' }),
-	image: text(),
-}, (table) => [
-	unique("user_email_unique").on(table.email),
-]);
 
 export const authenticator = pgTable("authenticator", {
 	credentialId: text().notNull(),
@@ -66,5 +30,41 @@ export const session = pgTable("session", {
 			columns: [table.userId],
 			foreignColumns: [user.id],
 			name: "session_userId_user_id_fk"
+		}).onDelete("cascade"),
+]);
+
+export const user = pgTable("user", {
+	id: text().primaryKey().notNull(),
+	name: text(),
+	email: text(),
+	emailVerified: timestamp({ mode: 'string' }),
+	image: text(),
+}, (table) => [
+	unique("user_email_unique").on(table.email),
+]);
+
+export const verificationToken = pgTable("verificationToken", {
+	identifier: text().notNull(),
+	token: text().notNull(),
+	expires: timestamp({ mode: 'string' }).notNull(),
+});
+
+export const account = pgTable("account", {
+	userId: text().notNull(),
+	type: text().notNull(),
+	provider: text().notNull(),
+	providerAccountId: text().notNull(),
+	refreshToken: text("refresh_token"),
+	accessToken: text("access_token"),
+	expiresAt: integer("expires_at"),
+	tokenType: text("token_type"),
+	scope: text(),
+	idToken: text("id_token"),
+	sessionState: text("session_state"),
+}, (table) => [
+	foreignKey({
+			columns: [table.userId],
+			foreignColumns: [user.id],
+			name: "account_userId_user_id_fk"
 		}).onDelete("cascade"),
 ]);
