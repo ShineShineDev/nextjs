@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+
+ssh://root@8.219.209.217/home/git/hl888.video-frontend.git

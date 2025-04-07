@@ -318,19 +318,19 @@ There are 4 ways to authenticate users with Auth.js:
 
 - For Drizzle
 
-  ```
+  ```bash
   npm install drizzle-orm @auth/drizzle-adapter
   ```
 
 - For TypeORM
 
-  ```
+  ```bash
   npm install @auth/typeorm-adapter typeorm
   ```
 
 - prisma
 
-  ```
+  ```bash
   npm install @prisma/client @auth/prisma-adapter
   npm install prisma --save-dev
   ```
@@ -349,9 +349,13 @@ There are 4 ways to authenticate users with Auth.js:
    
   export const { handlers, auth, signIn, signOut } = NextAuth({
     adapter: DrizzleAdapter(sql),
+    secret : process.env.AUTH_SECRET,
+    session: {strategy:"jwt"},
     providers: [],
   })
   
+  
+  ---------------
   
   // src/db/index.ts
   
@@ -366,8 +370,53 @@ There are 4 ways to authenticate users with Auth.js:
   export const sql = db;  // Export the initialized db instance directly
   // export const sql = drizzle(db,{schema,logger:true})
   ```
+  
+
+
+
+
+
+### 9  Setup
+
+- add Provider 
+
+  - github
+
+    ```
+    AUTH_GITHUB_ID=Ov23liAKEnKUVASRJEil
+    AUTH_GITHUB_SECRET=5a5ca3d75b801f028877b7c51bf2f9a9f5d176a8
+    ```
+
+> CallBack =>https://example.com/api/auth/callback/github
+
+- Configuration
+
+  ```react
+  // src/sever/auth.ts
+  import NextAuth from "next-auth"
+  import { DrizzleAdapter } from "@auth/drizzle-adapter"
+  import { sql } from "@/db/index"
+  import GitHub from "next-auth/providers/github"
+  
+  export const { handlers, auth, signIn, signOut } = NextAuth({
+    adapter: DrizzleAdapter(sql),
+    secret : process.env.AUTH_SECRET,
+    session: {strategy:"jwt"},
+    providers: [
+      GitHub
+    ],
+  })
+  ```
 
   
+
+http://192.168.110.204:3000/api/auth/signin
+
+
+
+
+
+
 
 
 
