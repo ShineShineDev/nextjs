@@ -376,9 +376,9 @@ There are 4 ways to authenticate users with Auth.js:
 
 
 
-### 9  Setup
+### 9 Provider Setup
 
-- add Provider 
+- Add Provider 
 
   - github
 
@@ -386,8 +386,6 @@ There are 4 ways to authenticate users with Auth.js:
     AUTH_GITHUB_ID=Ov23liAKEnKUVASRJEil
     AUTH_GITHUB_SECRET=5a5ca3d75b801f028877b7c51bf2f9a9f5d176a8
     ```
-
-> CallBack =>https://example.com/api/auth/callback/github
 
 - Configuration
 
