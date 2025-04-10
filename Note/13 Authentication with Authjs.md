@@ -387,7 +387,7 @@ There are 4 ways to authenticate users with Auth.js:
     AUTH_GITHUB_SECRET=5a5ca3d75b801f028877b7c51bf2f9a9f5d176a8
     ```
 
-- Configuration
+- Update atuh.ts Configuration
 
   ```react
   // src/sever/auth.ts
@@ -402,17 +402,18 @@ There are 4 ways to authenticate users with Auth.js:
     session: {strategy:"jwt"},
     providers: [
       GitHub
+      // GitHub({
+      //   clientId:process.env.AUTH_GITHUB_ID,
+      //   clientSecret:process.env.AUTH_GITHUB_SECRET
+      // })
     ],
   })
+  
   ```
-
+  
   
 
 http://192.168.110.204:3000/api/auth/signin
-
-
-
-
 
 
 

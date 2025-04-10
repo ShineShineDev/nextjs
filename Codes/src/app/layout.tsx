@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
+import AppNav from "@/components/navigation/app-nav";
 
 
 const geistSans = Geist({
@@ -33,10 +34,10 @@ export default function RootLayout({
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-        <link
+        {/* <link
           href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
           rel="stylesheet"
-        />
+        /> */}
       </head>
       <body
       >
@@ -58,10 +59,12 @@ export default function RootLayout({
             </ul>
           </div>
         </nav> */}
+        <AppNav></AppNav>
+        
         {children}
         {/* {analytics}
         {team} */}
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" ></script>
+        {/* <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" ></script> */}
       </body>
     </html>
   );
