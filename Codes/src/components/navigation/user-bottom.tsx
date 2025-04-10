@@ -5,7 +5,7 @@ import { signOut } from "next-auth/react";
 
 import { Button } from "../ui/button";
 import Link from "next/link";
-import { LogInIcon, LogOutIcon } from "lucide-react";
+import { LogInIcon, LogOutIcon, User2Icon } from "lucide-react";
 
 
 
@@ -24,13 +24,20 @@ const UserButton = ({ user }: Session) => {
                     </Button>
                     ) :
                     (
-                        <Button asChild variant={'default'} >
-                            <Link href={"/api/auth/signin"}>
-                                <LogInIcon></LogInIcon>
-                                Login
-
-                            </Link>
-                        </Button>
+                        <>
+                            <Button variant={'default'}>
+                                <Link href={"/auth/login"}>
+                                    <LogInIcon></LogInIcon>
+                                    Login
+                                </Link>
+                            </Button>
+                            <Button variant={'default'}>
+                                <Link href={"/auth/register"}>
+                                    <User2Icon></User2Icon>
+                                    Register
+                                </Link>
+                            </Button>
+                        </>
                     )
             }
         </div>
