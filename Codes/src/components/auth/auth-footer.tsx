@@ -8,9 +8,8 @@ type Pros = {
 
 export const AuthFooter = ({footerHref,footerLable} : Pros) => {
   return (
-    <div className='flex justify-between items-center w-full'>
-      {footerLable}
-      <Link className='bg-amber-100 border-2 rounded-sm px-1' href={footerHref}>{footerHref}</Link>
+    <div className='flex justify-end items-center w-full'>
+      <Link className='rounded-sm px-1' href={footerHref}>{footerLable}</Link>
     </div>
   )
 }

@@ -24,20 +24,20 @@ const UserButton = ({ user }: Session) => {
                     </Button>
                     ) :
                     (
-                        <>
-                            <Button variant={'default'}>
-                                <Link href={"/auth/login"}>
+                        <div className="flex gap-1">
+                            <Button variant={'default'} style={{ width: 'auto' }}>
+                                <Link href={"/auth/login"} className="flex">
                                     <LogInIcon></LogInIcon>
                                     Login
                                 </Link>
                             </Button>
-                            <Button variant={'default'}>
-                                <Link href={"/auth/register"}>
+                            <Button variant={'default'} style={{ width: 'auto' }}>
+                                <Link href={"/auth/register"} className="flex">
                                     <User2Icon></User2Icon>
                                     Register
                                 </Link>
                             </Button>
-                        </>
+                        </div>
                     )
             }
         </div>

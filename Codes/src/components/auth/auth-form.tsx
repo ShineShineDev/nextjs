@@ -19,7 +19,7 @@ type AuthFormPros = {
 }
 
 
-export const AuthForm = ({children,title,showProvider,footerHref,footerLable}: AuthFormPros) => {
+export const AuthForm = ({ children, title, showProvider, footerHref, footerLable }: AuthFormPros) => {
     return (
         <div>
             <Card>
@@ -30,9 +30,15 @@ export const AuthForm = ({children,title,showProvider,footerHref,footerLable}: A
                 <CardContent>
                     {children}
                 </CardContent>
-                <CardFooter>
-                    {showProvider && <ProviderLogin/>}
-                    <AuthFooter footerLable={footerLable} footerHref={footerHref}/>
+                <CardFooter className='block'>
+                    <div>
+                        {showProvider && <ProviderLogin />}
+                    </div>
+                    <div className='w-full flex mt-2  justify-center'>
+
+                        <AuthFooter footerLable={footerLable} footerHref={footerHref} />
+
+                    </div>
                 </CardFooter>
             </Card>
         </div>

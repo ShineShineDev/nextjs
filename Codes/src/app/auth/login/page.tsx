@@ -3,7 +3,11 @@ import React from 'react'
 
 const page = () => {
     return (
-        <AuthForm children={undefined} title={'Login'} showProvider={false} footerLable={"Don't have an account"} footerHref={'/auth/register'}/>
+        <div className='px-3'>
+            <div className=''> 
+                <AuthForm children={undefined} title={'Login to your account'} showProvider={true} footerLable={"Don't have an account"} footerHref={'/auth/register'} />
+            </div>
+        </div>
     )
 }
 
