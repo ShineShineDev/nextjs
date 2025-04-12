@@ -5,8 +5,13 @@ import { eq } from 'drizzle-orm';  // Import the eq function from drizzle-orm
 import { revalidatePath } from "next/cache";
 
 export async function getData() {
-    const list = await sql.select().from(usersTable);  // Use the usersTable directly from the schema
+    await delay(1000); // Delay for 1 second (1000 ms)
+
+    const list = await sql.select().from(users);  // Use the usersTable directly from the schema
     return list;
+}
+function delay(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 export async function crateData(formData: FormData) {
