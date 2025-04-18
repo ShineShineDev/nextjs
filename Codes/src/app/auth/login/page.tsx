@@ -1,15 +1,75 @@
+'use client';
+
 import { AuthForm } from '@/components/auth/auth-form';
-import React from 'react'
-import { getData, deleteData, crateData } from "@/sever/action";  // Import the getData function
+import { zodResolver } from "@hookform/resolvers/zod"
+import loginSchema from '@/types/login';
+import * as z from "zod"
+import { Button } from "@/components/ui/button"
+import React from 'react';
+import { useForm } from 'react-hook-form';
+import {
+    Form,
+    FormControl,
+    FormDescription,
+    FormField,
+    FormItem,
+    FormLabel,
+    FormMessage,
+} from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
+
 const page = async () => {
-     const data = await getData();  // Fetch data using getData
+
+    const form = useForm<z.infer<typeof loginSchema>>({
+        resolver: zodResolver(loginSchema),
+        // defaultValues: {
+        //     identity: "",
+        //     password: "",
+        // },
+    })
+
+    function onSubmit(values: z.infer<typeof loginSchema>) {
+        console.log(values)
+    }
+
     return (
         <div className='px-3'>
-            <div className=''> 
-                <AuthForm children={undefined} title={'Login to your account'} showProvider={true} footerLable={"Don't have an account"} footerHref={'/auth/register'} />
+            <div className=''>
+                <AuthForm title={'Login to your account'} showProvider={true} footerLable={"Don't have an account"} footerHref={'/auth/register'} >
+                    <Form {...form}>
+                        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
+                            <FormField
+                                control={form.control}
+                                name="identity"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>Email or Phone</FormLabel>
+                                        <FormControl>
+                                            <Input placeholder="shadcn" {...field} />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                            <FormField
+                                control={form.control}
+                                name="password"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>Password</FormLabel>
+                                        <FormControl>
+                                            <Input placeholder="shadcn" {...field} />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                            <Button type="submit">Submit</Button>
+                        </form>
+                    </Form>
+                </AuthForm>
             </div>
-        </div>
+        </div >
     )
 }
-
 export default page;
