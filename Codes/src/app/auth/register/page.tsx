@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import {RegisterAction} from "@/sever/auth-action";
 
 const Registger = async () => {
   const form = useForm<z.infer<typeof RegisterSchema>>({
@@ -17,8 +18,18 @@ const Registger = async () => {
     //   password: "",
     // },
   })
-  function onSubmit(values: z.infer<typeof RegisterSchema>) {
-    console.log(values)
+  async function  onSubmit(values: z.infer<typeof RegisterSchema>) {
+    console.log("Form values:", values);
+
+    const response = await RegisterAction(values);
+
+    if (response?.error) {
+      console.error("Registration failed:", response.error);
+      // show error to user if needed
+    } else {
+      console.log("Registration successful!");
+      // redirect or show success message
+    }
   }
   return (
     <div className="px-3">

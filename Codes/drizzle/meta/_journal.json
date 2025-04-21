@@ -15,6 +15,13 @@
       "when": 1743761877851,
       "tag": "0001_sleepy_otto_octavius",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1745252030917,
+      "tag": "0002_glossy_whizzer",
+      "breakpoints": true
     }
   ]
 }

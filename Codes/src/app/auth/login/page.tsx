@@ -17,6 +17,7 @@ import {
     FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
+import { LoginAction } from '@/sever/auth-action';
 
 const page = async () => {
 
@@ -29,7 +30,9 @@ const page = async () => {
     })
 
     function onSubmit(values: z.infer<typeof loginSchema>) {
-        console.log(values)
+    //    const {identity,password} = values;
+       console.log(values)
+       LoginAction(values)
     }
 
     return (
